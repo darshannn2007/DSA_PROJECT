@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connection Requests — CampusHive</title>
+  <link rel="icon" type="image/jpeg" href="/static/images/campushive-logo.jpg">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <script src="/static/js/app.js" defer></script>
+</head>
+<body data-page="requests" class="has-navbar">
+  <header class="navbar">
+    <nav class="navbar-inner" aria-label="Main Navigation">
+      <div class="nav-brand-group" style="display:flex;align-items:center;">
+        <a href="/home" class="nav-brand">
+          <img src="/static/images/campushive-logo.jpg" alt="" class="nav-logo-img">
+          <span>CampusHive</span>
+        </a>
+        <form id="nav-search-form" class="nav-search-form" role="search">
+          <label for="nav-search-input" class="sr-only">Search students</label>
+          <input type="search" id="nav-search-input" class="nav-search-input" placeholder="Search students (Ctrl+K)">
+        </form>
+      </div>
+
+      <button type="button" id="nav-toggle" class="nav-toggle" aria-controls="nav-menu" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span aria-hidden="true">☰</span>
+      </button>
+
+      <div id="nav-menu" class="nav-menu">
+        <ul class="nav-links">
+          <li><a href="/home" class="nav-link" data-nav="home">Home</a></li>
+          <li><a href="/connections" class="nav-link" data-nav="connections">Network</a></li>
+          <li><a href="/requests" class="nav-link active" data-nav="requests">Requests</a></li>
+          <li><a href="/groups" class="nav-link" data-nav="groups">Groups</a></li>
+          <li><a href="/search" class="nav-link" data-nav="search">Discover</a></li>
+          <li>
+            <a href="/notifications" class="nav-link" data-nav="notifications">
+              Notifications
+              <span id="nav-notif-badge" class="nav-badge is-zero" aria-label="Unread notifications"></span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-actions">
+          <button type="button" id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode" title="Toggle theme">
+            <span aria-hidden="true">◐</span>
+          </button>
+          <div class="me-dropdown-wrap">
+            <button type="button" id="me-menu-btn" class="btn btn-outline btn-sm me-dropdown-btn" aria-expanded="false" aria-controls="me-dropdown-menu">
+              <span id="nav-username">Me</span> ▾
+            </button>
+            <div id="me-dropdown-menu" class="me-dropdown-menu hidden" role="menu">
+              <div class="me-dropdown-header">
+                <strong id="me-menu-name">Student</strong>
+                <div id="me-menu-sub" class="form-hint">CampusHive</div>
+              </div>
+              <a href="/profile" id="me-menu-profile" class="me-dropdown-item" role="menuitem">View Profile</a>
+              <a href="/my-profile" class="me-dropdown-item" role="menuitem">Edit Profile</a>
+              <a href="/settings" class="me-dropdown-item" role="menuitem">Settings &amp; Security</a>
+              <a href="/help" class="me-dropdown-item" role="menuitem">Help &amp; FAQ</a>
+              <button type="button" id="logout-btn" class="me-dropdown-item me-dropdown-danger" role="menuitem">Sign Out</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="feed-layout">
+        <header class="page-header">
+          <h1 class="page-title">Connection Requests</h1>
+          <p class="page-subtitle">Manage invitations you've received and sent</p>
+        </header>
+
+        <div class="tabs" role="tablist" aria-label="Request directions">
+          <button
+            type="button"
+            id="tab-incoming"
+            class="tab-btn active"
+            role="tab"
+            aria-selected="true"
+            aria-controls="incoming-requests"
+          >
+            Incoming
+          </button>
+          <button
+            type="button"
+            id="tab-outgoing"
+            class="tab-btn"
+            role="tab"
+            aria-selected="false"
+            aria-controls="outgoing-requests"
+          >
+            Outgoing
+          </button>
+        </div>
+
+        <section id="incoming-requests" class="requests-list" role="tabpanel" aria-labelledby="tab-incoming">
+          <div class="spinner-wrapper">
+            <div class="spinner" aria-hidden="true"></div>
+            <span>Loading incoming requests...</span>
+          </div>
+        </section>
+
+        <section id="outgoing-requests" class="requests-list hidden" role="tabpanel" aria-labelledby="tab-outgoing">
+          <div class="spinner-wrapper">
+            <div class="spinner" aria-hidden="true"></div>
+            <span>Loading outgoing requests...</span>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

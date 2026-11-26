@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Feed — CampusHive</title>
+  <link rel="icon" type="image/jpeg" href="/static/images/campushive-logo.jpg">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <script src="/static/js/app.js" defer></script>
+</head>
+<body data-page="home" class="has-navbar">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="navbar">
+    <nav class="navbar-inner" aria-label="Main Navigation">
+      <div class="nav-brand-group" style="display:flex;align-items:center;">
+        <a href="/home" class="nav-brand">
+          <img src="/static/images/campushive-logo.jpg" alt="" class="nav-logo-img">
+          <span>CampusHive</span>
+        </a>
+        <form id="nav-search-form" class="nav-search-form" role="search">
+          <label for="nav-search-input" class="sr-only">Search students</label>
+          <input type="search" id="nav-search-input" class="nav-search-input" placeholder="Search students (Ctrl+K)">
+        </form>
+      </div>
+
+      <button type="button" id="nav-toggle" class="nav-toggle" aria-controls="nav-menu" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span aria-hidden="true">☰</span>
+      </button>
+
+      <div id="nav-menu" class="nav-menu">
+        <ul class="nav-links">
+          <li><a href="/home" class="nav-link active" data-nav="home">Home</a></li>
+          <li><a href="/connections" class="nav-link" data-nav="connections">Network</a></li>
+          <li><a href="/requests" class="nav-link" data-nav="requests">Requests</a></li>
+          <li><a href="/groups" class="nav-link" data-nav="groups">Groups</a></li>
+          <li><a href="/search" class="nav-link" data-nav="search">Discover</a></li>
+          <li>
+            <a href="/notifications" class="nav-link" data-nav="notifications">
+              Notifications
+              <span id="nav-notif-badge" class="nav-badge is-zero" aria-label="Unread notifications"></span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-actions">
+          <button type="button" id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode" title="Toggle theme">
+            <span aria-hidden="true">◐</span>
+          </button>
+          <div class="me-dropdown-wrap">
+            <button type="button" id="me-menu-btn" class="btn btn-outline btn-sm me-dropdown-btn" aria-expanded="false" aria-controls="me-dropdown-menu">
+              <span id="nav-username">Me</span> ▾
+            </button>
+            <div id="me-dropdown-menu" class="me-dropdown-menu hidden" role="menu">
+              <div class="me-dropdown-header">
+                <strong id="me-menu-name">Student</strong>
+                <div id="me-menu-sub" class="form-hint">CampusHive</div>
+              </div>
+              <a href="/profile" id="me-menu-profile" class="me-dropdown-item" role="menuitem">View Profile</a>
+              <a href="/my-profile" class="me-dropdown-item" role="menuitem">Edit Profile</a>
+              <a href="/settings" class="me-dropdown-item" role="menuitem">Settings &amp; Security</a>
+              <a href="/help" class="me-dropdown-item" role="menuitem">Help &amp; FAQ</a>
+              <button type="button" id="logout-btn" class="me-dropdown-item me-dropdown-danger" role="menuitem">Sign Out</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content" class="main-content">
+    <div class="container">
+      <div class="feed-3col">
+        <!-- Left Sidebar: Mini Profile & Quick Navigation -->
+        <aside class="sidebar-left" aria-label="Your summary">
+          <section class="card sidebar-profile-card">
+            <div class="sidebar-banner" aria-hidden="true"></div>
+            <div class="sidebar-profile-body">
+              <div id="sidebar-avatar" class="avatar avatar-lg sidebar-avatar-wrap" aria-hidden="true">?</div>
+              <a href="/profile" id="sidebar-name" class="sidebar-name">Loading...</a>
+              <div id="sidebar-sub" class="sidebar-sub">Campus Member</div>
+            </div>
+            <div class="sidebar-stats">
+              <a href="/connections" class="sidebar-stat-link">
+                <span>Connections</span>
+                <span id="sidebar-conn-count" class="sidebar-stat-val">0</span>
+              </a>
+              <a href="/requests" class="sidebar-stat-link">
+                <span>Pending Requests</span>
+                <span id="sidebar-req-count" class="sidebar-stat-val">0</span>
+              </a>
+              <a href="/my-profile" class="sidebar-stat-link">
+                <span>Edit Profile &amp; Skills</span>
+                <span>→</span>
+              </a>
+            </div>
+          </section>
+
+          <section class="card">
+            <h2 class="section-heading">Quick Access</h2>
+            <div class="sidebar-stats" style="border-top:none;padding:0;">
+              <a href="/groups" class="sidebar-stat-link"><span>Campus Groups</span><span>→</span></a>
+              <a href="/search" class="sidebar-stat-link"><span>Discover &amp; Search Peers</span><span>→</span></a>
+              <a href="/settings" class="sidebar-stat-link"><span>Account &amp; Security</span><span>→</span></a>
+            </div>
+          </section>
+        </aside>
+
+        <!-- Center Column: Composer + Feed -->
+        <div class="feed-center">
+          <section class="card composer-card" aria-labelledby="composer-heading">
+            <h2 id="composer-heading" class="sr-only">Create a post</h2>
+            <form id="post-composer-form" class="composer-form">
+              <label for="post-body" class="sr-only">Share something with your campus network</label>
+              <textarea
+                id="post-body"
+                class="form-textarea composer-textarea"
+                placeholder="Start a post — share a project update, study group, or question..."
+                maxlength="5000"
+                required
+              ></textarea>
+              <div class="composer-footer">
+                <div class="composer-tools">
+                  <label for="post-image" class="btn btn-outline btn-sm">Attach Image</label>
+                  <input type="file" id="post-image" accept="image/jpeg,image/png,image/webp" class="sr-only">
+                  <span id="post-image-name" class="form-hint"></span>
+                  <span id="post-char-count" class="char-counter">0 / 5000</span>
+                </div>
+                <button type="submit" id="post-submit" class="btn btn-primary">Post Update</button>
+              </div>
+            </form>
+          </section>
+
+          <div class="feed-tabs">
+            <button type="button" id="feed-tab-recent" class="btn btn-primary btn-sm">Recent</button>
+            <button type="button" id="feed-tab-trending" class="btn btn-outline btn-sm">Trending</button>
+          </div>
+
+          <section aria-label="Posts feed">
+            <div id="feed-container" class="feed-list">
+              <div class="spinner-wrapper">
+                <div class="spinner" aria-hidden="true"></div>
+                <span>Loading your feed...</span>
+              </div>
+            </div>
+
+            <div class="feed-actions">
+              <button type="button" id="load-more" class="btn btn-secondary hidden">Load More Posts</button>
+            </div>
+          </section>
+        </div>
+
+        <!-- Right Sidebar: People You May Know & Suggested Groups -->
+        <aside class="sidebar-right" aria-label="Recommendations">
+          <section class="card">
+            <div class="page-header-row" style="margin-bottom:0.75rem;">
+              <h2 class="section-heading" style="margin:0;">People You May Know</h2>
+              <a href="/search" class="form-hint">See all</a>
+            </div>
+            <div id="home-suggestions-widget" class="widget-list">
+              <div class="form-hint">Loading suggestions...</div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="page-header-row" style="margin-bottom:0.75rem;">
+              <h2 class="section-heading" style="margin:0;">Suggested Groups</h2>
+              <a href="/groups" class="form-hint">Explore</a>
+            </div>
+            <div id="home-groups-widget" class="widget-list">
+              <div class="form-hint">Loading groups...</div>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Groups — CampusHive</title>
+  <link rel="icon" type="image/jpeg" href="/static/images/campushive-logo.jpg">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <script src="/static/js/app.js" defer></script>
+</head>
+<body data-page="groups" class="has-navbar">
+  <header class="navbar">
+    <nav class="navbar-inner" aria-label="Main Navigation">
+      <div class="nav-brand-group" style="display:flex;align-items:center;">
+        <a href="/home" class="nav-brand">
+          <img src="/static/images/campushive-logo.jpg" alt="" class="nav-logo-img">
+          <span>CampusHive</span>
+        </a>
+        <form id="nav-search-form" class="nav-search-form" role="search">
+          <label for="nav-search-input" class="sr-only">Search students</label>
+          <input type="search" id="nav-search-input" class="nav-search-input" placeholder="Search students (Ctrl+K)">
+        </form>
+      </div>
+
+      <button type="button" id="nav-toggle" class="nav-toggle" aria-controls="nav-menu" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span aria-hidden="true">☰</span>
+      </button>
+
+      <div id="nav-menu" class="nav-menu">
+        <ul class="nav-links">
+          <li><a href="/home" class="nav-link" data-nav="home">Home</a></li>
+          <li><a href="/connections" class="nav-link" data-nav="connections">Network</a></li>
+          <li><a href="/requests" class="nav-link" data-nav="requests">Requests</a></li>
+          <li><a href="/groups" class="nav-link active" data-nav="groups">Groups</a></li>
+          <li><a href="/search" class="nav-link" data-nav="search">Discover</a></li>
+          <li>
+            <a href="/notifications" class="nav-link" data-nav="notifications">
+              Notifications
+              <span id="nav-notif-badge" class="nav-badge is-zero" aria-label="Unread notifications"></span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-actions">
+          <button type="button" id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode" title="Toggle theme">
+            <span aria-hidden="true">◐</span>
+          </button>
+          <div class="me-dropdown-wrap">
+            <button type="button" id="me-menu-btn" class="btn btn-outline btn-sm me-dropdown-btn" aria-expanded="false" aria-controls="me-dropdown-menu">
+              <span id="nav-username">Me</span> ▾
+            </button>
+            <div id="me-dropdown-menu" class="me-dropdown-menu hidden" role="menu">
+              <div class="me-dropdown-header">
+                <strong id="me-menu-name">Student</strong>
+                <div id="me-menu-sub" class="form-hint">CampusHive</div>
+              </div>
+              <a href="/profile" id="me-menu-profile" class="me-dropdown-item" role="menuitem">View Profile</a>
+              <a href="/my-profile" class="me-dropdown-item" role="menuitem">Edit Profile</a>
+              <a href="/settings" class="me-dropdown-item" role="menuitem">Settings &amp; Security</a>
+              <a href="/help" class="me-dropdown-item" role="menuitem">Help &amp; FAQ</a>
+              <button type="button" id="logout-btn" class="me-dropdown-item me-dropdown-danger" role="menuitem">Sign Out</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <header class="page-header">
+        <h1 class="page-title">Campus Groups</h1>
+        <p class="page-subtitle">Join study circles, clubs, and closely connected communities</p>
+      </header>
+
+      <section class="card composer-card" aria-labelledby="create-group-heading">
+        <h2 id="create-group-heading" class="section-heading">Create a Group</h2>
+        <form id="create-group-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="group-name" class="form-label">Group Name</label>
+              <input type="text" id="group-name" class="form-input" required maxlength="100" placeholder="e.g. DSA Study Group">
+            </div>
+            <div class="form-group">
+              <label for="group-policy" class="form-label">Membership Policy</label>
+              <select id="group-policy" class="form-select">
+                <option value="open">Open (Instant Join)</option>
+                <option value="request">Request to Join</option>
+                <option value="invite">Invite Only</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="group-desc" class="form-label">Description</label>
+            <input type="text" id="group-desc" class="form-input" maxlength="300" placeholder="What is this group about?">
+          </div>
+          <button type="submit" class="btn btn-primary btn-sm">Create Group</button>
+        </form>
+      </section>
+
+      <section class="card" aria-labelledby="group-suggestions-heading">
+        <h2 id="group-suggestions-heading" class="section-heading">Suggested For You (Closely Connected)</h2>
+        <div id="group-suggestions-list" class="cards-grid"></div>
+      </section>
+
+      <section class="card" aria-labelledby="all-groups-heading">
+        <h2 id="all-groups-heading" class="section-heading">All Campus Groups</h2>
+        <div id="all-groups-list" class="cards-grid"></div>
+      </section>
+
+      <section id="group-detail-section" class="card hidden" aria-labelledby="group-detail-title">
+        <h2 id="group-detail-title" class="section-heading">Group Feed</h2>
+        <div id="group-join-requests-box" class="hidden"></div>
+        <form id="group-post-form" class="composer-form">
+          <label for="group-post-body" class="sr-only">Share a post in this group</label>
+          <textarea id="group-post-body" class="form-textarea" placeholder="Write a post for this group..." maxlength="5000" required></textarea>
+          <div class="composer-footer">
+            <span></span>
+            <button type="submit" class="btn btn-primary btn-sm">Post to Group</button>
+          </div>
+        </form>
+        <div id="group-feed-list" class="feed-list"></div>
+      </section>
+    </div>
+  </main>
+
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

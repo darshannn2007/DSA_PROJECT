@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help &amp; FAQ — CampusHive</title>
+  <link rel="icon" type="image/jpeg" href="/static/images/campushive-logo.jpg">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <script src="/static/js/app.js" defer></script>
+</head>
+<body data-page="help">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="landing-nav">
+    <nav class="landing-nav-inner" aria-label="Help Navigation">
+      <a href="/" class="nav-brand">
+        <img src="/static/images/campushive-logo.jpg" alt="" class="nav-logo-img">
+        <span>CampusHive</span>
+      </a>
+      <div class="landing-nav-actions">
+        <button type="button" id="theme-toggle" class="theme-toggle-btn" aria-label="Switch theme" title="Switch theme">
+          <span aria-hidden="true">◐</span>
+        </button>
+        <a href="/login" class="btn btn-ghost">Sign In</a>
+        <a href="/register" class="btn btn-primary">Get Started</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content" class="main-content">
+    <div class="container feed-layout">
+      <header class="page-header">
+        <h1 class="page-title">Help &amp; Frequently Asked Questions</h1>
+        <p class="page-subtitle">Last updated: <time datetime="2026-11-25">25 November 2026</time> (v1.3)</p>
+      </header>
+
+      <section class="card" aria-labelledby="faq-heading">
+        <h2 id="faq-heading" class="section-heading">Common Questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>How are connection degrees and shortest paths calculated?</summary>
+            <p>CampusHive models accepted connections as an undirected graph in Python using adjacency lists and runs Breadth-First Search (BFS) to find the shortest hop chain (1st, 2nd, 3rd degree).</p>
+          </details>
+          <details class="faq-item">
+            <summary>How does People You May Know work?</summary>
+            <p>We look at two-hop neighbors in the social graph and rank candidates using Jaccard similarity on shared connections, excluding existing connections, pending requests, and blocked users.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Who can see my profile and posts?</summary>
+            <p>You can set your profile visibility to Campus (all active students) or Connections Only in Edit My Profile. Blocked users cannot view your profile, posts, or media.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How do I report abuse or delete my account?</summary>
+            <p>Use the Report or Block buttons on any profile or post. You can export your data as JSON or permanently delete your account from Edit My Profile.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="contact-heading">
+        <h2 id="contact-heading" class="section-heading">Contact Support</h2>
+        <p>Need help with your campus account, moderation appeal, or privacy request? Reach out to <a href="mailto:support@campusconnect.local">support@campusconnect.local</a>.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="landing-footer">
+    <p><a href="/">Home</a> · <a href="/terms">Terms</a> · <a href="/privacy">Privacy</a></p>
+  </footer>
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

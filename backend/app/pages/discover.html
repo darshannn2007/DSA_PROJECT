@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discover — CampusHive</title>
+  <link rel="icon" type="image/jpeg" href="/static/images/campushive-logo.jpg">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <script src="/static/js/app.js" defer></script>
+</head>
+<body data-page="discover" class="has-navbar">
+  <header class="navbar">
+    <nav class="navbar-inner" aria-label="Main Navigation">
+      <a href="/home" class="nav-brand">
+        <img src="/static/images/campushive-logo.jpg" alt="" class="nav-logo-img">
+        <span>CampusHive</span>
+      </a>
+
+      <button type="button" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span aria-hidden="true">☰</span>
+      </button>
+
+      <div id="nav-menu" class="nav-menu">
+        <ul class="nav-links">
+          <li><a href="/home" class="nav-link" data-nav="home">Home</a></li>
+          <li><a href="/connections" class="nav-link" data-nav="connections">Connections</a></li>
+          <li><a href="/requests" class="nav-link" data-nav="requests">Requests</a></li>
+          <li><a href="/search" class="nav-link" data-nav="search">Discover</a></li>
+          <li>
+            <a href="/notifications" class="nav-link" data-nav="notifications">
+              Notifications
+              <span id="nav-notif-badge" class="nav-badge is-zero" aria-label="Unread notifications"></span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-actions">
+          <button type="button" id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode" title="Toggle theme">
+            <span aria-hidden="true">◐</span>
+          </button>
+          <a href="/my-profile" id="nav-username" class="nav-user-link">Profile</a>
+          <button type="button" id="logout-btn" class="btn btn-outline btn-sm">Logout</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <header class="page-header">
+        <div class="page-header-row">
+          <div>
+            <h1 class="page-title">People You May Know</h1>
+            <p class="page-subtitle">Suggestions ranked by shared mutual connections and network similarity</p>
+          </div>
+          <a href="/search" class="btn btn-outline btn-sm">Search All Users</a>
+        </div>
+      </header>
+
+      <section aria-label="Recommended connections">
+        <div id="suggestions-container" class="users-grid">
+          <div class="spinner-wrapper">
+            <div class="spinner" aria-hidden="true"></div>
+            <span>Finding recommendations...</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
